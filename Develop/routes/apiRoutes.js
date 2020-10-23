@@ -27,13 +27,14 @@ module.exports = function (app) {
     });
 
     app.delete("/api/notes/:id", function (req, res) {
-        res.redirect('back');
+        res.redirect(303, "/notes");
         for (var id in json) {
             if (id == req.params.id) {
                 json.splice(id, 1);
                 fs.writeFileSync(path.resolve(dbDir, "db.json"), JSON.stringify(json));
-
+                
             }
         }
+
     });
 };
